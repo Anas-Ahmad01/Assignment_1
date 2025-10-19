@@ -41,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void setupClickListeners() {
-        // Number buttons
+
         findViewById(R.id.btn0).setOnClickListener(v -> onNumberPressed("0"));
         findViewById(R.id.btn1).setOnClickListener(v -> onNumberPressed("1"));
         findViewById(R.id.btn2).setOnClickListener(v -> onNumberPressed("2"));
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn8).setOnClickListener(v -> onNumberPressed("8"));
         findViewById(R.id.btn9).setOnClickListener(v -> onNumberPressed("9"));
 
-        // Basic operations
+
         findViewById(R.id.btnPlus).setOnClickListener(v -> onOperatorPressed("+"));
         findViewById(R.id.btnMinus).setOnClickListener(v -> onOperatorPressed("-"));
         findViewById(R.id.btnMultiply).setOnClickListener(v -> onOperatorPressed("×"));
@@ -64,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnEquals).setOnClickListener(v -> onEqualsPressed());
         findViewById(R.id.btnDecimal).setOnClickListener(v -> onDecimalPressed());
 
-        // Utility functions
+
         findViewById(R.id.btnAC).setOnClickListener(v -> onAllClearPressed());
         findViewById(R.id.btnPlusMinus).setOnClickListener(v -> onPlusMinusPressed());
         findViewById(R.id.btnPercent).setOnClickListener(v -> onPercentPressed());
 
-        // Scientific functions
+
         findViewById(R.id.btnSin).setOnClickListener(v -> onScientificFunctionPressed("sin"));
         findViewById(R.id.btnCos).setOnClickListener(v -> onScientificFunctionPressed("cos"));
         findViewById(R.id.btnTan).setOnClickListener(v -> onScientificFunctionPressed("tan"));
@@ -119,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         isScientificMode = !isScientificMode;
     }
 
-    // Number input handler
     private void onNumberPressed(String number) {
         if (resetOnNextInput || currentInput.equals("0") || currentInput.equals("Error")) {
             currentInput = number;
@@ -131,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         updateDisplay();
     }
 
-    // Operator handler
+
     private void onOperatorPressed(String operator) {
         if (currentInput.equals("Error")) return;
 
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         updateDisplay();
     }
 
-    // Equals handler
+
     private void onEqualsPressed() {
         if (expression.isEmpty() || currentInput.equals("Error")) return;
 
@@ -172,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Scientific function handler
+
     private void onScientificFunctionPressed(String function) {
         if (!isScientificMode) return;
 
@@ -189,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Constant handler
+
     private void onConstantPressed(String constant) {
         if (!isScientificMode) return;
 
@@ -205,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         updateDisplay();
     }
 
-    // Bracket handler
+
     private void onBracketPressed(String bracket) {
         if (!isScientificMode) return;
 
@@ -218,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         updateDisplay();
     }
 
-    // Utility functions
+
     private void onAllClearPressed() {
         currentInput = "0";
         expression.clear();
@@ -260,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Additional scientific functions
+
     private void onDegRadToggle() {
         // Implement degree/radian toggle logic
         showError("DEG/RAD toggle not implemented");
@@ -282,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
         showError("Memory function not implemented");
     }
 
-    // Scientific function implementation
+
     private double applyScientificFunction(double value, String function) {
         switch (function) {
             case "sin":
@@ -329,13 +326,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Expression evaluation
+
     private double evaluateExpression(List<String> expr) {
         if (expr.isEmpty()) return Double.parseDouble(currentInput);
 
         List<String> expressionCopy = new ArrayList<>(expr);
 
-        // Handle multiplication and division first
+
         for (int i = 0; i < expressionCopy.size(); i++) {
             String token = expressionCopy.get(i);
             if (token.equals("×") || token.equals("÷") || token.equals("^") || token.equals("mod")) {
@@ -363,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // Handle addition and subtraction
+
         double result = Double.parseDouble(expressionCopy.get(0));
         for (int i = 1; i < expressionCopy.size(); i += 2) {
             String operator = expressionCopy.get(i);
@@ -379,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-    // Helper methods
+
     private String buildExpressionString(List<String> expr) {
         StringBuilder sb = new StringBuilder();
         for (String token : expr) {
