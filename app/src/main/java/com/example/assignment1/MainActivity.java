@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             expression.add(currentInput);
             expression.add(operator);
-            currentInput = "0";
+            currentInput = "";
         }
 
         lastInputWasOperator = true;
