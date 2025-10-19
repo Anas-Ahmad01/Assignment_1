@@ -12,12 +12,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // UI Components
+
     private TextView Edit_Text;
     private LinearLayout scientificPanel;
     private Button btnScientificToggle;
 
-    // Calculator State
+
     private String currentInput = "0";
     private List<String> expression = new ArrayList<>();
     private boolean resetOnNextInput = false;
